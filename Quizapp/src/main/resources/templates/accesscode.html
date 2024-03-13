@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random OTP Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffcc; /* Yellow background */
+            margin: 20px;
+        }
+
+        .container {
+            background-color: #fff; /* White container background */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h2 {
+            color: #ffcc00; /* Yellow-green heading color */
+        }
+
+        .otp {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #ffcc00; /* Yellow-green background */
+            color: #ffffff; /* White text color */
+            border-radius: 4px;
+        }
+
+        .generate-button {
+            background-color: #ffcc00; /* Yellow-green button background */
+            color: white; /* White text color */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .generate-button:hover {
+            background-color: #ffd700; /* Darker yellow on hover */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Join Code</h2>
+
+    <div class="otp" th:text="${otp}"></div>
+
+</div>
+
+</body>
+</html>

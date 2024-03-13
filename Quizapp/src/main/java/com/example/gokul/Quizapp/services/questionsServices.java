@@ -23,6 +23,11 @@ public class questionsServices {
 		return "Deleted";
 		
 	}
+	public void savequestion(questions qs) {
+		
+		qd.save(qs);
+		
+	}
 	
 	
 }

@@ -9,34 +9,49 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-color: #ffffff; /* White background */
+            background-image: url('homepage.jpeg'); /* Replace 'homepage.jpeg' with your image path */
+            background-size: cover; /* Cover the entire viewport */
+            background-position: center; /* Center the background image */
+            background-attachment: fixed; /* Fixed background position */
+            color: #000000; /* Black text color */
+            animation: fadeIn ease 1s; /* Fade-in animation for the content */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
         }
 
         nav {
-            background-color: #4caf50; /* Green background for the navbar */
+            background-color: rgba(255, 255, 0, 0.7); /* Yellow background for the navbar with transparency */
             overflow: hidden;
+            height: 60px; /* Set height of the navbar */
+            transition: background-color 0.3s; /* Smooth transition for hover effect */
+        }
+
+        nav:hover {
+            background-color: rgb(199, 199, 0); /* Darker yellow on hover with transparency */
         }
 
         nav a {
             float: left;
             display: block;
-            color: #ffffff; /* White text color */
+            color: #000000; /* Black text color */
             text-align: center;
-            padding: 14px 16px;
+            padding: 20px; /* Larger padding for more clickable area */
             text-decoration: none;
+            transition: background-color 0.3s; /* Smooth transition for hover effect */
         }
 
         nav a:hover {
-            background-color: #45a049; /* Darker green on hover */
+            background-color: rgba(230, 230, 0, 0.9); /* Darker yellow on hover with transparency */
         }
 
         .container {
             padding: 20px;
         }
 
-        h1 {
-            color: #4caf50; /* Green color for the heading */
-        }
+       
     </style>
 </head>
 <body>
@@ -48,7 +63,7 @@
     </nav>
 
     <div class="container">
-        <h1>Welcome to Your Website</h1>
+       
         <!-- Add more content as needed -->
     </div>
 

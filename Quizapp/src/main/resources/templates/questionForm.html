@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form in Yellow Theme</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffcc; /* Yellow background */
+            margin: 20px;
+        }
+
+        .container {
+            background-color: #fff; /* White container background */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #ffcc00; /* Yellow button background */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #ffd700; /* Darker yellow on hover */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2 style="color: #ffcc00;">Enter Your Questions</h2>
+    <form action="/save" method="post">
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+        </div>
+        <div class="form-group">
+            <label for="optiona">Option A:</label>
+            <input type="text" id="optiona" name="optiona" required>
+        </div>
+        <div class="form-group">
+            <label for="optionb">Option B:</label>
+            <input type="text" id="optionb" name="optionb" required>
+        </div>
+        <div class="form-group">
+            <label for="optionc">Option C:</label>
+            <input type="text" id="optionc" name="optionc" required>
+        </div>
+        <div class="form-group">
+            <label for="category">Category:</label>
+            <select id="category" name="category" required>
+                <option value="">Select category</option>
+                <option value="Category A">Science</option>
+                <option value="Category B">Geography</option>
+                <option value="Category C">History</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="crctans">Correct Answer:</label>
+            <input type="text" id="correctanswer" name="crctans" required>
+        </div>
+        <div class="form-group">
+            <label for="level">Difficulty Level:</label>
+            <select id="difficulty" name="level" required>
+                <option value="">Select difficulty level</option>
+                <option value="Easy">Easy</option>
+                <option value="Medium">Medium</option>
+                <option value="Hard">Hard</option>
+            </select>
+        </div>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+</body>
+</html>
