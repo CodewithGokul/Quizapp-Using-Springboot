@@ -17,6 +17,12 @@ public class questionsServices {
 		
 		return qd.findAll();
 	}
+	public String deleteall() {
+		
+		qd.deleteAll();
+		return "Deleted";
+		
+	}
 	
 	
 }

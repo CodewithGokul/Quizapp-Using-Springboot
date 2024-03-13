@@ -27,4 +27,10 @@ public class HomeController {
 			return "datas";
 			
 		}
+		@GetMapping("deleteall")
+		public String deleteall()
+		{
+			 questionservices.deleteall();
+			 return "redirect:/datas";
+		}
 }

@@ -24,12 +24,27 @@
         th {
             background-color: #f2f2f2;
         }
+
+        /* Green and white theme for the button */
+        .create-button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
     </style>
     <title>Thymeleaf Table Example</title>
 </head>
 <body>
 
-    <h1>Thymeleaf Table Example</h1>
+    <h1>Your Questions</h1>
+
+    <!-- Add the "Create" button with green and white theme -->
+    <button class="create-button" onclick="location.href='/create'">Create</button>
+    <button class="create-button" onclick="location.href='/deleteall'">Deleteall</button>
 
     <table>
         <thead>
