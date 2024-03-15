@@ -28,7 +28,13 @@ public class questionsServices{
 		
 	}
 	public  void savequestion(questions qs) {
-		qd.save(qs);
+		qd.save(qs);		
+	}
+    public List<allquestions> fetchquestion(Integer joincode) {
+
+			return aqd.findByCode(joincode);
+    }
+	public void savehistory(){
 		List<questions> qc = qd.findAll();
 		List<allquestions> allquestions = new ArrayList<>();
 		for(questions qst:qc){

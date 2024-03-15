@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Card</title>
+    <link rel="stylesheet" href="joincard.css">
+</head>
+<body>
+    <div class="card">
+        <h2 class="card-title">Enter Join Code</h2>
+        <div class="card-body">
+            <form action="/joinaccess" method="post">
+                <label for="joinCode" class="input-label">Join Code:</label>
+                <input type="text" id="joinCode" name="joinCode" class="input-field">
+                <button type="submit" class="submit-button">Submit</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

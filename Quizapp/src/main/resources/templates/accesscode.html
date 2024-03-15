@@ -41,6 +41,7 @@
             border-radius: 4px;
             cursor: pointer;
             font-size: 16px;
+            margin-top: 20px;
         }
 
         .generate-button:hover {
@@ -54,7 +55,8 @@
     <h2>Join Code</h2>
 
     <div class="otp" th:text="${code}"></div>
-
+  
+    <button class="generate-button" onclick="location.href='/accept'">OK</button>
 </div>
 
 </body>

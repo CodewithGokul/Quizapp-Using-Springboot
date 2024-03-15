@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="heading">Welcome to the Quiz</h1>
+        <div th:each="data : ${codeData}">
+            <div class="question">
+                <p th:text="${data.title}"></p>
+            </div>
+            <div class="options">
+                <label for="optionA"><input type="radio" id="optionA" name="answer" value="A" th:text="${data.optiona}"></label><br>
+                <label for="optionB"><input type="radio" id="optionB" name="answer" value="B" th:text="${data.optionb}"></label><br>
+                <label for="optionC"><input type="radio" id="optionC" name="answer" value="C" th:text="${data.optionc}"></label><br>
+            </div>
+            <div class="difficulty">
+                <label for="difficulty">Difficulty:</label>
+            <div th:if="${data.level=='Easy'}">
+                <label style="color: rgb(0, 255, 0);" th:text="${data.level}"></label>
+            </div>
+            <div th:if="${data.level=='Medium'}">
+                <label style="color: rgb(251, 255, 0);" th:text="${data.level}"></label>
+            </div>
+            <div th:if="${data.level=='Hard'}">
+                <label style="color: rgb(255, 8, 0);" th:text="${data.level}"></label>
+            </div>
+            </div>
+        </div>
+        <button class="submit-button">Submit</button>
+    </div>
+</body>
+</html>

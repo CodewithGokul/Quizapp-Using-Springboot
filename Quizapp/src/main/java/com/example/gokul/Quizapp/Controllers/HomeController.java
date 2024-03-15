@@ -68,8 +68,15 @@ public class HomeController {
 
 	@GetMapping("/generatecode")
 	public String gencode(Model model) {
+		flag=0;
+		qss.savehistory();
+		qss.deleteall();
 		model.addAttribute("code", randomNumber);
 		return "accesscode";
+	}
+	@GetMapping("/accept")
+	public String accept(){
+		return "redirect:/datas";
 	}
 }
 
