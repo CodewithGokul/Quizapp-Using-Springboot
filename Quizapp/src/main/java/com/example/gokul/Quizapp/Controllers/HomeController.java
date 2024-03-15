@@ -1,8 +1,6 @@
 package com.example.gokul.Quizapp.Controllers;
-
 import java.util.List;
 import java.util.Random;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,15 +11,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import com.example.gokul.Quizapp.models.allquestions;
 import com.example.gokul.Quizapp.models.questions;
 import com.example.gokul.Quizapp.services.questionsServices;
 
 @Controller
 public class HomeController {
+	static int flag=0;
+	static int randomNumber;
 	@Autowired
-	questionsServices questionservices;
-
+	questionsServices qss;
 	@GetMapping("/")
 	public String home() {
 		return "index";
@@ -29,7 +28,7 @@ public class HomeController {
 
 	@GetMapping("/datas")
 	public String getallData(Model model) {
-		model.addAttribute("datas", questionservices.getalldata());
+		model.addAttribute("datas", qss.getalldata());
 
 		return "datas";
 
@@ -37,7 +36,7 @@ public class HomeController {
 
 	@GetMapping("deleteall")
 	public String deleteall() {
-		questionservices.deleteall();
+		qss.deleteall();
 		return "redirect:/datas";
 	}
 
@@ -48,26 +47,29 @@ public class HomeController {
 
 	@PostMapping("/save")
 	public String save(@Validated @ModelAttribute questions qs, BindingResult result) {
+		if(flag==0){
+			Random random = new Random();
+			int min = 1000;
+			int max = 9999;
+			randomNumber = random.nextInt(max - min + 1) + min;
+			qs.setCode(randomNumber);
+			flag=1;
+		}
+		qs.setCode(randomNumber);
+
 		if (result.hasErrors()) {
 			return "redirect:/questionForm";
 		} else {
-			questionservices.savequestion(qs);
+			qss.savequestion(qs);
 			return "redirect:/datas";
 		}
 	}
+	
 
 	@GetMapping("/generatecode")
 	public String gencode(Model model) {
-		Random random = new Random();
-
-		int min = 1000;
-		int max = 9999;
-		int randomNumber = random.nextInt(max - min + 1) + min;
-		
-		model.addAttribute("otp", randomNumber);
+		model.addAttribute("code", randomNumber);
 		return "accesscode";
 	}
-
-
-
 }
+

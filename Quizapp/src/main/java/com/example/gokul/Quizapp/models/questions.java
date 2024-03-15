@@ -77,5 +77,12 @@ private String optionc;
 private String title;
 private String crctans;
 private String category;
+private Integer code;
+public int getCode() {
+	return code;
+}
+public void setCode(int code) {
+	this.code = code;
+}
 
 }
