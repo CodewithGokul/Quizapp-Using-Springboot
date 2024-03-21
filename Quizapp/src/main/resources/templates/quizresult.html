@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Quiz Result</title>
+    <style>
+        body {
+            background-color: #ffffcc; /* Yellow background */
+            font-family: Arial, sans-serif;
+            color: #333; /* Dark text color */
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff; /* White background */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+        }
+        h1 {
+            text-align: center;
+            color: #333; /* Dark text color */
+        }
+        .result-info {
+            margin-bottom: 20px;
+        }
+        .result-info p {
+            margin: 5px 0;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ffcc00; /* Yellow button */
+            color: #fff; /* White text color */
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #ffa500; /* Darker yellow on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Quiz Result</h1>
+        <div class="result-info">
+            <p>Marks: <strong th:text="${marks}">85%</strong></p>
+            <p>Rank: <strong th:text="${rank}">1</strong></p>
+        </div>
+        <a href="/quiz/questions" class="btn">View Question Results</a>
+    </div>
+</body>
+</html>
