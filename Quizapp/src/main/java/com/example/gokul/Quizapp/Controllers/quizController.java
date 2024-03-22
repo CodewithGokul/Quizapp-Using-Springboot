@@ -34,6 +34,7 @@ class quizController {
     static public Integer code;
     static public Integer quest=0;
 
+
     @PostMapping("/joinaccess")
     public String joinaccess(@RequestParam("joinCode") Integer joincode, Model model) {
         code = joincode;
