@@ -9,10 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.example.gokul.Quizapp.dao.allquestionsdao;
 import com.example.gokul.Quizapp.dao.questionsdao;
-import com.example.gokul.Quizapp.dao.resultDao;
 import com.example.gokul.Quizapp.models.allquestions;
 import com.example.gokul.Quizapp.models.questions;
-import com.example.gokul.Quizapp.models.resultAns;
 
 @Service
 public class questionsServices{
@@ -22,19 +20,16 @@ public class questionsServices{
 	allquestionsdao aqd;
 	@Autowired
 	JdbcTemplate jdbctemplate;
-	@Autowired
-	resultDao resultdao;
 
+	public static Integer mark=0;
+	public static Integer track=0;
 
 	public List<questions> getalldata() {
-		
 		return qd.findAll();
 	}
-	public String deleteall() {
-		
+	public String deleteall() {	
 		qd.deleteAll();
 		return "Deleted";
-		
 	}
 	public  void savequestion(questions qs) {
 		qd.save(qs);		
@@ -66,11 +61,15 @@ public class questionsServices{
 		String sql = "ALTER TABLE " + tableName + " AUTO_INCREMENT = 1";
 		jdbctemplate.execute(sql);
 	}
-	public void getresult(List<resultAns> resultans,Integer code) {
-		List<allquestions> allquestions = aqd.findByCode(code);
-		for(resultAns ra:resultans){
-
-		}
-	}
+	
+    public void validateAnswer(Integer code,String answer) {
+		List<allquestions> allques = aqd.findByCode(code);
+		// List<resultAns> userAns =  resultdao.findAll();	
+			if(answer.equals(allques.get(track).getCrctans()))
+			{
+				mark++;
+			}
+			track++;			
+    }
 
 }

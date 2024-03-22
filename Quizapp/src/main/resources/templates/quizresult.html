@@ -44,8 +44,7 @@
     <div class="container">
         <h1>Quiz Result</h1>
         <div class="result-info">
-            <p>Marks: <strong th:text="${marks}">85%</strong></p>
-            <p>Rank: <strong th:text="${rank}">1</strong></p>
+            <p>Marks: <strong th:text="${marks}"></strong>/<strong th:text="${total}"></strong></p>
         </div>
         <a href="/quiz/questions" class="btn">View Question Results</a>
     </div>
