@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz Results</title>
+  <link rel="stylesheet" href="quiz.css" />
+</head>
+
+<body>
+
+  <div class="container">
+    <h1 class="heading">Correct Answer</h1>
+    <div th:each="question : ${allquestions}">
+      <div style="background-color: rgb(220, 255, 227);">
+     
+        <p th:text="${question.title}"></p>
+        <p th:text="${question.crctans}"></p>
+
+      </div>
+
+    </div>
+    <h1>Your Answer</h1>
+    <div th:each="result : ${useresult}">
+        <p th:text="${result}"></p>
+    </div>
+  </div>
+
+</body>
+</html>

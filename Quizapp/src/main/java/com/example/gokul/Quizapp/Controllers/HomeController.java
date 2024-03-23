@@ -41,7 +41,16 @@ public class HomeController {
 		qss.deleteall();
 		return "redirect:/datas";
 	}
+	@GetMapping("/specificDelete")
+	public String deleteByButton(){
 
+		return "redirect:/datas";
+	}
+	
+	public String getMethodName(@RequestParam String param) {
+		return new String();
+	}
+	
 	@GetMapping("/create")
 	public String create() {
 		qss.resetId("questions");

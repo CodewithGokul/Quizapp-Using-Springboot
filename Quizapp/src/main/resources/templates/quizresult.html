@@ -41,12 +41,14 @@
     </style>
 </head>
 <body>
+    <form action="/resultQuestion" method="get">
     <div class="container">
         <h1>Quiz Result</h1>
         <div class="result-info">
             <p>Marks: <strong th:text="${marks}"></strong>/<strong th:text="${total}"></strong></p>
         </div>
-        <a href="/quiz/questions" class="btn">View Question Results</a>
+        <button type="submit" class="btn">View Questions</button>
     </div>
+</form>
 </body>
 </html>

@@ -11,7 +11,6 @@ import com.example.gokul.Quizapp.dao.allquestionsdao;
 import com.example.gokul.Quizapp.dao.questionsdao;
 import com.example.gokul.Quizapp.models.allquestions;
 import com.example.gokul.Quizapp.models.questions;
-
 @Service
 public class questionsServices{
 	@Autowired
@@ -23,7 +22,7 @@ public class questionsServices{
 
 	public static Integer mark=0;
 	public static Integer track=0;
-
+	public static List<String> answers = new ArrayList<>();
 	public List<questions> getalldata() {
 		return qd.findAll();
 	}
@@ -69,7 +68,13 @@ public class questionsServices{
 			{
 				mark++;
 			}
+			// else{
+			// 	System.out.println(answer);
+			// 	System.out.println(allques.get(track).getCrctans());
+			// }
+				answers.add(answer);
 			track++;			
     }
-
+	
+  
 }

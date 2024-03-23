@@ -10,28 +10,25 @@
 
 // @Entity
 // @ToString
-// @Table(name = "result_table")
+// @Table(name="result_table")
 // public class resultAns {
 //     @Id
 //     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//     private Integer id;
-//     @Column(name="crctans")
-//     private String crctans;
-
+//     @Column(name = "id")
+//     Integer id;
+//     @Column(name = "crctans")
+//     String crctans;
 //     public Integer getId() {
 //         return id;
 //     }
-
 //     public void setId(Integer id) {
 //         this.id = id;
 //     }
-
 //     public String getCrctans() {
 //         return crctans;
 //     }
-
 //     public void setCrctans(String crctans) {
 //         this.crctans = crctans;
 //     }
-// }
 
+// }   

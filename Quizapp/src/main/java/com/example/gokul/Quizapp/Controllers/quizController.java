@@ -1,6 +1,7 @@
 package com.example.gokul.Quizapp.Controllers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.example.gokul.Quizapp.dao.allquestionsdao;
 import com.example.gokul.Quizapp.models.allquestions;
 import com.example.gokul.Quizapp.services.questionsServices;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,6 +25,8 @@ class quizController {
 
     @Autowired
     questionsServices questionservices;
+    @Autowired
+    allquestionsdao aqd;
     static public Integer code;
     static public Integer quest=0;
 
@@ -58,5 +63,15 @@ class quizController {
                 return "quizresult";
             }  
             return "quiz";
+    }
+
+    @GetMapping("/resultQuestion")
+    public String resultQuestion(Model model) {
+        java.util.List<allquestions> question = aqd.findByCode(code);
+        
+    
+        model.addAttribute("allquestions",question);
+        model.addAttribute("useresult", questionservices.answers);
+        return "resultquiz";
     }
 }
