@@ -24,6 +24,14 @@ private String optiona;
 private String optionb;
 @Column(name="option_c")
 private String optionc;
+@Column(name="option_d")
+private String optiond;
+public String getOptiond() {
+    return optiond;
+}
+public void setOptiond(String optiond) {
+    this.optiond = optiond;
+}
 private String title;
 private String crctans;
 private String category;

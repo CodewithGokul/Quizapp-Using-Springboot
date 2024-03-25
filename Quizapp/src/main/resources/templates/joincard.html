@@ -6,13 +6,29 @@
     <title>Input Card</title>
     <link rel="stylesheet" href="joincard.css">
 </head>
+<style>
+    .card{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10%;
+    }
+    .inputs{
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;   
+         }
+</style>
 <body>
     <div class="card">
         <h2 class="card-title">Enter Join Code</h2>
         <div class="card-body">
             <form action="/joinaccess" method="post">
                 <label for="joinCode" class="input-label">Join Code:</label>
-                <input type="text" id="joinCode" name="joinCode" class="input-field">
+                <spam class="inputs">
+                <input + type="text" id="joinCode" name="joinCode" class="input-field">
+                </spam>
                 <button type="submit" class="submit-button">Submit</button>
             </form>
         </div>

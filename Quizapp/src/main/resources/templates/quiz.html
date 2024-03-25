@@ -15,6 +15,7 @@
             <p th:text="${data.title}"></p>
           </div>
           <div class="options">
+            <div th:if="${data.optiona}!=null">
             <label
               th:for="${'optionA' + index}"
               th:text="${data.optiona}"
@@ -25,7 +26,9 @@
               name="answer"
               th:value="${data.optiona}"
             />
+          </div>
             <br />
+            <div th:if="${data.optionb}!=null">
             <label
               th:for="${'optionB' + index}"
               th:text="${data.optionb}"
@@ -36,7 +39,9 @@
               name="answer"
               th:value="${data.optionb}"
             />
+          </div>
             <br />
+            <div th:if="${data.optionc}!=null">
             <label
               th:for="${'optionC' + index}"
               th:text="${data.optionc}"
@@ -47,6 +52,20 @@
               name="answer"
               th:value="${data.optionc}"
             />
+          </div>
+            <br />
+            <div th:if="${data.optiond}!=null">
+            <label
+              th:for="${'optionD' + index}"
+              th:text="${data.optiond}"
+            ></label>
+            <input
+              type="radio"
+              th:id="${'optionD' + index}"
+              name="answer"
+              th:value="${data.optiond}"
+            />
+          </div>
             <br />
           </div>
           <div class="difficulty">
@@ -70,8 +89,13 @@
               ></label>
             </div>
           </div>
+          <div class="fif">
+            <button type="submit" class="submit-button">Next Question</button>
+            <a th:href="@{/powerups(id=${data.id})}" class="submit-button" id="powerups" style="text-decoration: none;"
+              >50:50 option</a
+            >
+          </div>
         </div>
-        <button type="submit" class="submit-button">Next Question</button>
       </form>
     </div>
   </body>

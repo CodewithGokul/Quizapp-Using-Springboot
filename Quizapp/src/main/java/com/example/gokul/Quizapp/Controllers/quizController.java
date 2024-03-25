@@ -2,6 +2,8 @@ package com.example.gokul.Quizapp.Controllers;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Optional;
+import java.util.Random;
 
 import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.gokul.Quizapp.dao.allquestionsdao;
+import com.example.gokul.Quizapp.dao.questionsdao;
 import com.example.gokul.Quizapp.models.allquestions;
+import com.example.gokul.Quizapp.models.questions;
 import com.example.gokul.Quizapp.services.questionsServices;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -27,9 +31,12 @@ class quizController {
     questionsServices questionservices;
     @Autowired
     allquestionsdao aqd;
+    @Autowired
+    questionsdao qd;
     static public Integer code;
     static public Integer quest=0;
-
+    java.util.List<questions> questByCode;
+    
     @GetMapping("/attendquiz")
     public String attendquiz() {
 
@@ -40,8 +47,10 @@ class quizController {
     public String joinaccess(@RequestParam("joinCode") Integer joincode, Model model) {
         code = joincode;
         quest=0;
-        java.util.List<allquestions> questByCode = questionservices.fetchquestion(joincode);   
-        model.addAttribute("codeData",questByCode.get(quest));
+        java.util.List<allquestions> questByallCode = questionservices.fetchallquestion(joincode);   
+        model.addAttribute("codeData",questByallCode.get(quest));
+        questionservices.resetId("questions");
+        questionservices.saveFor50(joincode);
         questionservices.mark=0;
         questionservices.track=0;
         return "quiz";
@@ -49,14 +58,15 @@ class quizController {
     
     @PostMapping("/nextquestion")
     public String nextQuestion(@RequestParam("answer") String answer,Model model){
-        java.util.List<allquestions> questByCode = questionservices.fetchquestion(code);
+        questByCode = questionservices.fetchquestion(code);
             try {
                 questionservices.validateAnswer(code, answer);
                 quest++;
                 if(questByCode.get(quest)!=null){
                     model.addAttribute("codeData",questByCode.get(quest));        
                 }
-            } catch (Exception e) {
+            } 
+            catch (Exception e) {
                 System.out.println(e);
                 model.addAttribute("marks",questionservices.mark);
                 model.addAttribute("total",questionservices.track);
@@ -67,11 +77,18 @@ class quizController {
 
     @GetMapping("/resultQuestion")
     public String resultQuestion(Model model) {
-        java.util.List<allquestions> question = aqd.findByCode(code);
-        
-    
+        java.util.List<allquestions> question = aqd.findByCode(code); 
         model.addAttribute("allquestions",question);
         model.addAttribute("useresult", questionservices.answers);
         return "resultquiz";
+    }
+
+    @GetMapping("/powerups")
+    public String powerUps(@RequestParam Integer id,Model model) {
+        questionservices.deleteTwoOption(id);
+        questByCode = questionservices.fetchquestion(code);
+        System.out.println(questByCode.get(quest));
+        model.addAttribute("codeData", questByCode.get(quest));   
+        return "quiz";
     }
 }

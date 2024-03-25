@@ -8,7 +8,7 @@ body {
 .container {
     max-width: 600px;
     margin: 50px auto;
-    background-color: #fff; /* White container background */
+    background-color: #ffffff; /* White container background */
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -50,4 +50,9 @@ body {
 
 .submit-button:hover {
     background-color: #ffd700; /* Darker yellow on hover */
+}
+.card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

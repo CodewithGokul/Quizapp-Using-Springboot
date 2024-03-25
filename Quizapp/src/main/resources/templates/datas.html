@@ -18,7 +18,7 @@
 
         th, td {
             border: 1px solid #ffcc00; /* Yellow border */
-            padding: 8px;
+            padding: 20px;
             text-align: left;
         }
 
@@ -37,12 +37,14 @@
             cursor: pointer;
             font-size: 16px;
             margin-bottom: 10px;
+            text-decoration: none;
         }
 
         /* Hover effect for buttons */
         .create-button:hover {
             background-color: #ffd700; /* Darker yellow on hover */
         }
+        
     </style>
     <title>Thymeleaf Table Example</title>
 </head>
@@ -55,33 +57,37 @@
     <button class="create-button" onclick="location.href='/deleteall'">Delete All</button>
     <button class="create-button" onclick="location.href='/generatecode'">Submit</button>
 
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Title</th>
-                <th>Option A</th>
-                <th>Option B</th>
-                <th>Option C</th>
-                <th>Category</th>
-                <th>Correct Answer</th>
-                <th>Level</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Thymeleaf iteration for data -->
-            <tr th:each="row : ${datas}">
-                <td th:text="${row.id}"></td>
-                <td th:text="${row.title}"></td>
-                <td th:text="${row.optiona}"></td>
-                <td th:text="${row.optionb}"></td>
-                <td th:text="${row.optionc}"></td>
-                <td th:text="${row.category}"></td>
-                <td th:text="${row.crctans}"></td>
-                <td th:text="${row.level}"></td>
-            </tr>
-        </tbody>
-    </table>
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Option A</th>
+                    <th>Option B</th>
+                    <th>Option C</th>
+                    <th>Option D</th>
+                    <th>Category</th>
+                    <th>Correct Answer</th>
+                    <th>Level</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Thymeleaf iteration for data -->
+                <tr th:each="row : ${datas}">
+                    <td th:text="${row.title}"></td>
+                    <td th:text="${row.optiona}"></td>
+                    <td th:text="${row.optionb}"></td>
+                    <td th:text="${row.optionc}"></td>
+                    <td th:text="${row.optiond}"></td>
+                    <td th:text="${row.category}"></td>
+                    <td th:text="${row.crctans}"></td>
+                    <td th:text="${row.level}"></td>
+                    <td>
+                        <a class="create-button" th:href="@{/delete(id=${row.id})}" onclick="return confirm('Are you sure you want to delete this question?')">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
 </body>
 </html>

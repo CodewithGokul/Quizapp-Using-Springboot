@@ -1,4 +1,5 @@
 package com.example.gokul.Quizapp.Controllers;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,10 @@ public class HomeController {
 	static int randomNumber;
 	@Autowired
 	questionsServices qss;
+
 	@GetMapping("/")
 	public String home() {
+		qss.deleteall();
 		return "index";
 	}
 
@@ -41,14 +44,11 @@ public class HomeController {
 		qss.deleteall();
 		return "redirect:/datas";
 	}
-	@GetMapping("/specificDelete")
-	public String deleteByButton(){
 
+	@GetMapping("/delete")
+	public String deleteByButton(@RequestParam Integer id){
+			qss.deleteByButton(id);
 		return "redirect:/datas";
-	}
-	
-	public String getMethodName(@RequestParam String param) {
-		return new String();
 	}
 	
 	@GetMapping("/create")
@@ -86,9 +86,11 @@ public class HomeController {
 		model.addAttribute("code", randomNumber);
 		return "accesscode";
 	}
+
 	@GetMapping("/accept")
 	public String accept(){
 		return "redirect:/datas";
 	}
+
 }
 

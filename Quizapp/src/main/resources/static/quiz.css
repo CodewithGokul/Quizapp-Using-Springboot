@@ -4,7 +4,10 @@ body {
     margin: 0;
     padding: 0;
 }
-
+.fif{
+    display: flex;
+    justify-content: space-around;
+}
 .container {
     max-width: 600px;
     margin: 50px auto;
@@ -50,4 +53,8 @@ body {
 
 .submit-button:hover {
     background-color: #ffd700; /* Darker yellow on hover */
+}
+#powerups{
+    background-color: rgb(156, 255, 156);
+    color: rgb(0, 146, 0);
 }
