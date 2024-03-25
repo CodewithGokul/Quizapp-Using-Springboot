@@ -47,12 +47,14 @@ class quizController {
     public String joinaccess(@RequestParam("joinCode") Integer joincode, Model model) {
         code = joincode;
         quest=0;
-        java.util.List<allquestions> questByallCode = questionservices.fetchallquestion(joincode);   
-        model.addAttribute("codeData",questByallCode.get(quest));
         questionservices.resetId("questions");
         questionservices.saveFor50(joincode);
+        questByCode = questionservices.fetchquestion(joincode);   
+        model.addAttribute("codeData",questByCode.get(quest));
+        questionservices.resetId("questions");
         questionservices.mark=0;
         questionservices.track=0;
+        questionservices.flag=1;
         return "quiz";
     }
     
@@ -86,6 +88,7 @@ class quizController {
     @GetMapping("/powerups")
     public String powerUps(@RequestParam Integer id,Model model) {
         questionservices.deleteTwoOption(id);
+        System.out.println(id);
         questByCode = questionservices.fetchquestion(code);
         System.out.println(questByCode.get(quest));
         model.addAttribute("codeData", questByCode.get(quest));   

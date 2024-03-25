@@ -38,6 +38,10 @@
         .btn:hover {
             background-color: #ffa500; /* Darker yellow on hover */
         }
+        .button{
+            display: flex;
+            justify-content: space-evenly;
+        }
     </style>
 </head>
 <body>
@@ -47,8 +51,11 @@
         <div class="result-info">
             <p>Marks: <strong th:text="${marks}"></strong>/<strong th:text="${total}"></strong></p>
         </div>
+        <div class="button">
         <button type="submit" class="btn">View Questions</button>
-    </div>
+        <a th:href="@{/}" class="btn" id="powerups" style="text-decoration: none;"
+        >Finish</a>
+        </div>
 </form>
 </body>
 </html>

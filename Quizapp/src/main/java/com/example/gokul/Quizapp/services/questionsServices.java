@@ -26,6 +26,7 @@ public class questionsServices {
 	public static Integer mark = 0;
 	public static Integer track = 0;
 	public static List<String> answers = new ArrayList<>();
+	public static Integer flag = 1;
 
 	public List<questions> getalldata() {
 		return qd.findAll();
@@ -70,11 +71,10 @@ public class questionsServices {
 		aqd.saveAll(allquestions);
 	}
 
-	public void saveFor50(Integer joincode) 
-	{
+	public void saveFor50(Integer joincode) {
 		List<allquestions> codeQuestion = aqd.findByCode(joincode);
 		List<questions> question = new ArrayList<>();
-		for(allquestions aq : codeQuestion) {
+		for (allquestions aq : codeQuestion) {
 			questions questions = new questions();
 			questions.setCrctans(aq.getCrctans());
 			questions.setCategory(aq.getCategory());
@@ -90,18 +90,15 @@ public class questionsServices {
 		qd.saveAll(question);
 	}
 
-	public void resetId(String tableName) 
-	{
+	public void resetId(String tableName) {
 		String sql = "ALTER TABLE " + tableName + " AUTO_INCREMENT = 1";
 		jdbctemplate.execute(sql);
 	}
 
-	public void validateAnswer(Integer code, String answer) 
-	{
+	public void validateAnswer(Integer code, String answer) {
 		List<allquestions> allques = aqd.findByCode(code);
 		// List<resultAns> userAns = resultdao.findAll();
-		if (answer.equals(allques.get(track).getCrctans()))
-		{
+		if (answer.equals(allques.get(track).getCrctans())) {
 			mark++;
 		}
 
@@ -109,70 +106,68 @@ public class questionsServices {
 		track++;
 	}
 
-	public void deleteByButton(Integer id)
-	{
+	public void deleteByButton(Integer id) {
 
 		qd.deleteById(id);
 	}
 
 	public void deleteTwoOption(Integer id) {
-		questions qs = qd.findById(id).orElse(null);
-		List<questions> qst = new ArrayList<>(); 
-		if (qs != null) 
-		{
-			i = 0;
-			Random random = new Random();
-			int randomNumber = random.nextInt(4) + 1;
-			System.out.println(qs.getTitle());
-			System.out.println(qs.getCrctans());
-			System.out.println(randomNumber);
-			if (qs.getOptiona() != null) {
-				System.out.println("hi");
-			}
-			while (i < 2) {
-				System.out.println(i);
-				randomNumber = random.nextInt(4) + 1;
-				System.out.println("random" + randomNumber);
-				switch (randomNumber) {
-					case 1:
-						if (qs.getOptiona() != null && !(qs.getOptiona().equals(qs.getCrctans()))) {
-							qd.deleteOptiona(id);
-							qs.setOptiona(null);
-							i++;
-						}
-						break;
-					case 2:
-						if (qs.getOptionb() != null && !(qs.getOptionb().equals(qs.getCrctans()))) {
-							qd.deleteOptionb(id);
-							qs.setOptionb(null);
-							i++;
-						}
-						break;
+			questions qs = qd.findById(id).orElse(null);
+			List<questions> qst = new ArrayList<>();
+			if (qs != null) {
+				i = 0;
+				Random random = new Random();
+				int randomNumber = random.nextInt(4) + 1;
+				System.out.println(qs.getTitle());
+				System.out.println(qs.getCrctans());
+				System.out.println(randomNumber);
 
-					case 3:
-						if (qs.getOptionc() != null && !(qs.getOptionc().equals(qs.getCrctans()))) {
-							qd.deleteOptionc(id);
-							qs.setOptionc(null);
-							i++;
-						}
-						break;
+				while (i < 2) {
+					System.out.println(i);
+					randomNumber = random.nextInt(4) + 1;
+					System.out.println("random" + randomNumber);
+					switch (randomNumber) {
+						case 1:
+							if (qs.getOptiona() != null && !(qs.getOptiona().equals(qs.getCrctans()))) {
+								qd.deleteOptiona(id);
+								qs.setOptiona(null);
+								i++;
+							}
+							break;
+						case 2:
+							if (qs.getOptionb() != null && !(qs.getOptionb().equals(qs.getCrctans()))) {
+								qd.deleteOptionb(id);
+								qs.setOptionb(null);
+								i++;
+							}
+							break;
 
-					case 4:
-						if (qs.getOptiond() != null && !(qs.getOptiond().equals(qs.getCrctans()))) {
-							qd.deleteOptiond(id);
-							qs.setOptiond(null);
-							i++;
-						}
-						break;
+						case 3:
+							if (qs.getOptionc() != null && !(qs.getOptionc().equals(qs.getCrctans()))) {
+								qd.deleteOptionc(id);
+								qs.setOptionc(null);
+								i++;
+							}
+							break;
 
-					default:
-						break;
+						case 4:
+							if (qs.getOptiond() != null && !(qs.getOptiond().equals(qs.getCrctans()))) {
+								qd.deleteOptiond(id);
+								qs.setOptiond(null);
+								i++;
+							}
+							break;
+
+						default:
+							break;
+					}
+					qd.save(qs);
 				}
-				qd.save(qs);
+			} else {
+				System.out.println("Question not found with ID: " + id);
 			}
-		} else {
-			System.out.println("Question not found with ID: " + id);
+			flag=0;
 		}
 	}
 
-}
+
