@@ -27,6 +27,7 @@ public class questionsServices {
 	public static Integer track = 0;
 	public static List<String> answers = new ArrayList<>();
 	public static Integer flag = 1;
+	public static Integer powerups = 1;
 
 	public List<questions> getalldata() {
 		return qd.findAll();
@@ -112,20 +113,21 @@ public class questionsServices {
 	}
 
 	public void deleteTwoOption(Integer id) {
+		if (powerups == 1) {
 			questions qs = qd.findById(id).orElse(null);
 			List<questions> qst = new ArrayList<>();
 			if (qs != null) {
 				i = 0;
 				Random random = new Random();
 				int randomNumber = random.nextInt(4) + 1;
-				System.out.println(qs.getTitle());
-				System.out.println(qs.getCrctans());
-				System.out.println(randomNumber);
+				// System.out.println(qs.getTitle());
+				// System.out.println(qs.getCrctans());
+				// System.out.println(randomNumber);
 
 				while (i < 2) {
-					System.out.println(i);
+					// System.out.println(i);
 					randomNumber = random.nextInt(4) + 1;
-					System.out.println("random" + randomNumber);
+					// System.out.println("random" + randomNumber);
 					switch (randomNumber) {
 						case 1:
 							if (qs.getOptiona() != null && !(qs.getOptiona().equals(qs.getCrctans()))) {
@@ -166,8 +168,8 @@ public class questionsServices {
 			} else {
 				System.out.println("Question not found with ID: " + id);
 			}
-			flag=0;
+			flag = 0;
 		}
+		powerups = 0;
 	}
-
-
+}

@@ -24,7 +24,7 @@ import com.example.gokul.Quizapp.models.questions;
 import com.example.gokul.Quizapp.services.questionsServices;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@Controller
+@Controller 
 class quizController {
 
     @Autowired
@@ -48,13 +48,14 @@ class quizController {
         code = joincode;
         quest=0;
         questionservices.resetId("questions");
-        questionservices.saveFor50(joincode);
+        questionservices.saveFor50(joincode); //In Question Table Again Saving For Eliminate The option
         questByCode = questionservices.fetchquestion(joincode);   
         model.addAttribute("codeData",questByCode.get(quest));
         questionservices.resetId("questions");
         questionservices.mark=0;
         questionservices.track=0;
         questionservices.flag=1;
+        questionservices.powerups=1;
         return "quiz";
     }
     
@@ -65,6 +66,7 @@ class quizController {
                 questionservices.validateAnswer(code, answer);
                 quest++;
                 if(questByCode.get(quest)!=null){
+                    questionservices.powerups=1;
                     model.addAttribute("codeData",questByCode.get(quest));        
                 }
             } 
@@ -88,10 +90,16 @@ class quizController {
     @GetMapping("/powerups")
     public String powerUps(@RequestParam Integer id,Model model) {
         questionservices.deleteTwoOption(id);
-        System.out.println(id);
         questByCode = questionservices.fetchquestion(code);
         System.out.println(questByCode.get(quest));
         model.addAttribute("codeData", questByCode.get(quest));   
         return "quiz";
     }
+
+    @GetMapping("/userdata")
+        public void userdata()
+        {
+            System.out.println("Userdata Fetched");
+        }
+        
 }

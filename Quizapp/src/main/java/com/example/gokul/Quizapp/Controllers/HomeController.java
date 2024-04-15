@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.example.gokul.Quizapp.models.allquestions;
 import com.example.gokul.Quizapp.models.questions;
 import com.example.gokul.Quizapp.services.questionsServices;
@@ -91,6 +90,13 @@ public class HomeController {
 	public String accept(){
 		return "redirect:/datas";
 	}
+
+	@GetMapping("/login")
+	public String getMethodName() {
+		return "login";
+	}
+	
+	
 
 }
 

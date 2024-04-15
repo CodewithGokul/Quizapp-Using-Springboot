@@ -42,10 +42,14 @@ body {
     background-color: #ffcc00; /* Yellow-green button background */
     color: white; /* White text color */
     padding: 10px 20px;
-    border: none;
+    border-color: #ffcc00;
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
+    border: 10px;
+    border-color: goldenrod;
+    box-shadow: 20pc;
+    box-shadow: black;
 }
 
 .submit-button:hover {
